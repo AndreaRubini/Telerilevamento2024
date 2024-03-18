@@ -58,8 +58,41 @@ plot(b8, col=clch)
 # Let's make a satellite image
 #questo comando permette di unire le varie immagini al fine di formarne una singola
 # N.B. le immagini vengono visualizzate a griglia 2x2 non vengono sovrapposte una sull'altra 
-stacksent <- c(b2, b3, b4, b8)
+stacksent <- c(b2, b3, b4, b8) # c() concatenate concatena insieme i plot
 plot(stacksent, col=clch)
 
 dev.off()
 plot(stacksent[[4]], col=clch)
+
+dev.off() # cancella il precedente plot
+
+# RGB plotting 
+# stacksent [[1]] = b2= blue
+# stacksent [[2]] = b3= green
+# stacksent [[3]] = b4= red
+# stacksent [[4]] = b8= nir
+
+# impilare le immagini una sull altra per creare una nuova immagine che è la somma delle precedenti
+im.plotRGB(stacksent,3,2,1) 
+# se si vuole visualizzare il vicino infrarosso al posto del rosso, swicth del 3 in 4 e 2 in 3 e 1 in due. TECNICA DEL FALSO COLORE 
+im.plotRGB(stacksent,4,3,2) 
+
+#  per visualizzare in colori naturali e in infrarosso
+par(mfrow=c(1,2)
+# nir in green
+> im.plotRGB(stacksent,3,4,2)        
+# nir in blue
+> im.plotRGB(stacksent,3,2,4)     
+# final multiframe
+par(mfrow=c(2,2))
+im.plotRGB(stacksent,3,2,1) 
+im.plotRGB(stacksent,3,4,2)     
+im.plotRGB(stacksent,3,2,4)        
+im.plotRGB(stacksent,4,2,3)     
+#grafico che mostra la correlazione tra le varie bande (correlation of information)
+pairs (stacksent)    
+im.plotRGB(stacksent,3,2,1) 
+im.plotRGB(stacksent,3,4,2)     
+im.plotRGB(stacksent,3,2,4)        
+im.plotRGB(stacksent,4,2,3)    
+#grafici di correlazone tra i vari colori  
