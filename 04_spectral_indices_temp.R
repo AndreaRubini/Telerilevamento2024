@@ -20,10 +20,19 @@ im.plotRGB(m1992, r=2, g=3, b=1) # infrarosso nella banda del blu
 m2006 <- im.import("matogrosso_ast_2006209_lrg.jpg")
 im.plotRGB(m2006, r=2, g=3, b=1)
 
-# build a multiframe with 1992 and 2006 images
-par(mfrow=c(1,2))
-im.plotRGB(m1992, r=2, g=3, b=1)
-im.plotRGB(m2006, r=2, g=3, b=1)
+# Costruiamo un  multiframe con immagini 1992 e 2006 
+par(mfrow=c(2,3))
+im.plotRGB(m1992, r=1, g=2, b=3) #nir on R 1992
+im.plotRGB(m1992, r=2, g=1, b=3) #nir on G 1992
+im.plotRGB(m1992, r=2, g=3, b=1) #nir on B 1992
+im.plotRGB(m2006, r=1, g=2, b=3) #nir on R 2006
+im.plotRGB(m2006, r=2, g=1, b=3) #nir on B 2006
+im.plotRGB(m2006, r=2, g=3, b=1) #nir on B 2006
+
+#bit elemento base dell'informazione in informatica può essere 0 o 1 
+# 1 bit 2 alla uno info, 3 bit 2alla terza info 2alla 8 256 info 
+#copernicus lavora a 16 bit 
+#nasa lavora a 8 
 
 # DVI = NIR - RED
 # bands: 1=NIR, 2=RED, 3=GREEN
