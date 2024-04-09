@@ -117,3 +117,4 @@ plot(ndvi2006,col=cl)
 #opzione per creare la funzione ndvi anzichè fare il calcolo 
 ndvi2006a <- im.ndvi(m2006, 1, 2)
 plot(ndvi2006a, col=cl)
+
