@@ -50,7 +50,7 @@ m2006c <- im.classify(m2006, num_clusters=2)
 # frequencies numero di pixel della foresta - il numero di pixel di suolo nudo
 f1992 <- freq(m1992c)
 
-# proportions
+# proportions proporzione frequenza diviso il totale.
 tot1992 <- ncell(m1992c)
 prop1992 = f1992 / tot1992
 
@@ -72,24 +72,27 @@ perc2006 = prop2006 * 100
 # 1992: 17% human, 83% forest
 # 2006: 55% human, 45% forest
 
-# let's build a dataframe
-class <- c("forest", "human")
-p1992 <- c(83, 17)
+# costruiamo un dataframe, classe su una colonna, percentuale 1992 su un altra colonna e 2006 su un altra colonna 
+class <- c("forest", "human") # tutto ciò che non è un numero ma è un testo va messo tra virgolette.
+p1992 <- c(83, 17) 
 p2006 <- c(45, 55)
 
 tabout <- data.frame(class, p1992, p2006)
 tabout
+View(tabout) # abbastanza inutile, viene visualizzato come tabella separata.
 
-# plotting the output
+# plotting the output creiamo un plot grazie a ggplot addon esterno a r installato 
+#aes estestica decidiamo come sarà l'estetica di questo plot 
+#geom_bar la geometria che scegliamo di identificare in questo caso, "identity" ovvero solo la dimensione 
 ggplot(tabout, aes(x=class, y=p1992, color=class)) + geom_bar(stat="identity", fill="white")
 ggplot(tabout, aes(x=class, y=p2006, color=class)) + geom_bar(stat="identity", fill="white")
 
-# patchwork
+# patchwork creiamo una patchwork per poter visualizzare contemporaneamente entrambi i grafici   
 p1 <- ggplot(tabout, aes(x=class, y=p1992, color=class)) + geom_bar(stat="identity", fill="white")
 p2 <- ggplot(tabout, aes(x=class, y=p2006, color=class)) + geom_bar(stat="identity", fill="white")
 p1 + p2
 
-# varying axis and using lines
+# varying axis and using lines a questo punto normalizziamo gli indici per entrambi  -> ylim(c(0,100) limite di y normalizzato per entrmabi da 0 a 100
 p1 <- ggplot(tabout, aes(x=class, y=p1992, color=class)) + geom_bar(stat="identity", fill="white") + ylim(c(0,100))
 p2 <- ggplot(tabout, aes(x=class, y=p2006, color=class)) + geom_bar(stat="identity", fill="white") + ylim(c(0,100))
 p1 + p2
