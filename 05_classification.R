@@ -1,34 +1,45 @@
+#Training Site: pixel presi in modo casuale da lì-->  Indiduamo gruppi (cluster) in base alla diversa riflettanza..
+#Facciamo poi la media dei valori tra i vari cluster da qui calcoliamo la distanza di un nuovo pixel incognito e vediamo se il pixel è più distante al cluster vegetazione rispetto ad altri cluster
+#
+
 # quantifying land cover change
 
-# intsall.packages("ggplot2")
-# intsall.packages("patchwork")
+# install.packages("ggplot2")
+# install.packages("patchwork")
 
 library(terra)
 library(imageRy)
 library(ggplot2)
 library(patchwork)
 
+# lista immagini 
 im.list()
+#importiamo i dati
+im.import
+
+m1992<-("matogrosso_l5_1992219_lrg.jpg")    
 
 # https://www.esa.int/ESA_Multimedia/Images/2020/07/Solar_Orbiter_s_first_views_of_the_Sun6
 # additional images: https://webbtelescope.org/contents/media/videos/1102-Video?Tag=Nebulas&page=1
 
-# importing images
+#importiamo anche l'immagine del sole 
+
 sun <- im.import("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
 
 # classifying images
+#classififichiamo le varie classi di cluster da noi scelte in questo caso 3 
 sunc <- im.classify(sun, num_clusters=3)
-
+#
 # importing Mato grosso images
 m1992 <- im.import("matogrosso_l5_1992219_lrg.jpg")
 m2006 <- im.import("matogrosso_ast_2006209_lrg.jpg")
 
-# classifying images
+# classifying images in questo caso mettiamone solo 2 per rimarcare la differenza tra suolo nudo e la vegetazione
 m1992c <- im.classify(m1992, num_clusters=2)
 
-# 1992
-# class 1 = human
-# class 2 = forest
+# rinominiamo le classi 
+# class 1 = forest
+# class 2 = human
 
 m2006c <- im.classify(m2006, num_clusters=2)
 
@@ -36,7 +47,7 @@ m2006c <- im.classify(m2006, num_clusters=2)
 # class 1 = human
 # class 2 = forest
 
-# frequencies
+# frequencies numero di pixel della foresta - il numero di pixel di suolo nudo
 f1992 <- freq(m1992c)
 
 # proportions
