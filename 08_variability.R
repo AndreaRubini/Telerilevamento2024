@@ -43,3 +43,5 @@ sd13 <- focal(nir, matrix(1/169, 13, 13), fun=sd)
 stacksd <- c(sd3, sd7, sd13)
 plot(stacksd, col=viridisc)
 #la deviazione standard è un valore relativo rispetto alla riflettanza originale  che va (da 0 a 255) 
+# introduzione all'analisi multivariata: nella prossima lezion 09 analizzeremo salvador dali e banchoff 
+# principal component pc1 e pc2 asse pc1 e tengo quell'asse perdo il 10% dell'informazione a cui è legato l'asse 2 ma
