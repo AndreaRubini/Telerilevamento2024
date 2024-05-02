@@ -1,16 +1,19 @@
 # how to make multivariate analysis in R with remote sensing data
-
+# come fare a individuare una sola variabile su cui fare il calcolo?
+#possiamo rendere due dimensioni e racchiuderle in una singola dimensione
+#analisi delle compontenti principali
+#partendo da due bande originali anzichè usare gli assi tradizioni utilizzaizamo un nuovo asse PC1 con un range molto piu alto del secondo PC2 
 library(terra)
 library(imageRy)
 library(viridis) # for the final plot
 
 im.list()
-
-b2 <- im.import("sentinel.dolomites.b2.tif")  
-b3 <- im.import("sentinel.dolomites.b3.tif")  
-b4 <- im.import("sentinel.dolomites.b4.tif")  
-b8 <- im.import("sentinel.dolomites.b8.tif")  
-
+#iniziamo con l'importazione di ogni singola banda
+b2 <- im.import("sentinel.dolomites.b2.tif")  #blue
+b3 <- im.import("sentinel.dolomites.b3.tif")  #verde
+b4 <- im.import("sentinel.dolomites.b4.tif")  #rosso
+b8 <- im.import("sentinel.dolomites.b8.tif")  #nir
+#stack per ricopomporre l'immagine satellitare
 sentdo <- c(b2, b3, b4, b8)
 
 im.plotRGB(sentdo, 4, 3, 2)
