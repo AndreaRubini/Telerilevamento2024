@@ -36,14 +36,16 @@ pairs(sentdo)
 # pcmap <- predict(sentdo, pca, index=c(1:4))
 
 pcimage <- im.pca(sentdo)
-
+# per sapere la percentuale di variabilità basta fare la somma 
 # [1] 1719.25654  626.98962   54.63642   34.92315
 tot <- sum(1719.25654,626.98962,54.63642,34.92315)
 1719.25654*100 / tot
 
 viridis <- colorRampPalette(viridis(7))(255)
 plot(pcimage, col=viridis)
-
+#alternativa + rapida
+plot(pcimage,col=viridis (100)
+     
 magma <- colorRampPalette(magma(7))(255)
 plot(pcimage, col=magma)
 
