@@ -9,7 +9,7 @@ This course involves the follwing master programs
 Main language used:
 +R
 +LaTex
-+MarkDown
++Markdown
 
 >**Note**
 >no previus knoledge of R is required
@@ -19,4 +19,10 @@ Main language used:
 >**External Links**
 >[unibo](https://www.unibo.it/it/studiare/dottorati-master-specializzazioni-e-altra-formazione/insegnamenti/insegnamento/2021/455374)
 
+
+##Main package used
+
+```{r}|
+library(imageRy)
+```
 
