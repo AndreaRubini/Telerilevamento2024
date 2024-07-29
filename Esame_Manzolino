@@ -20,61 +20,45 @@ setwd("/Users/Rubolide/Desktop/OasiManzolino")
 # Carico le immagini del 2017 e del 2023 Ogni banda viene assegnata ad un oggetto. 
 # Queste vengono poi incluse in uno stack per creare una immagine che contenga tutte le bande per ogni anno. 
 
+            #2017
+>B022017<-rast("B04-2017.jpg")
 
-# 2017
-l17_1 <- rast("l17_3.tiff")
-l17_2 <- rast("l17_2.tiff")
-l17_3 <- rast("l17_1.tiff")
-l17_4 <- rast("l17_4.tiff")
-l17 <- c(l17_1, l17_2, l17_3, l17_4)
+> B032017<-rast("B03-2017.jpg")
 
-d17_1 <- rast("d17_3.tiff")
-d17_2 <- rast("d17_2.tiff")
-d17_3 <- rast("d17_1.tiff")
-d17_4 <- rast("d17_4.tiff")
-d17 <- c(d17_1, d17_2, d17_3, d17_4)
+> B042017<-rast("B02-2017.jpg")
 
+> B082017<-rast("B08-2017.jpg")
 
-# 2023
-l18_1 <- rast("l18_3.tiff")
-l18_2 <- rast("l18_2.tiff")
-l18_3 <- rast("l18_1.tiff")
-l18_4 <- rast("l18_4.tiff")
-l18 <- c(l18_1, l18_2, l18_3, l18_4)
+U17<-c(B022017,B032017,B042017,B082017)
 
-d18_1 <- rast("d18_3.tiff")
-d18_2 <- rast("d18_2.tiff")
-d18_3 <- rast("d18_1.tiff")
-d18_4 <- rast("d18_4.tiff")
-d18 <- c(d18_1, d18_2, d18_3, d18_4)
+#2023
 
+> B022023<-rast("B04-2023.jpg")
 
+> B022023<-rast("B04-2023.jpg")
 
-# imposto una visualizzazione delle immagini utilizzando la funzione par(), 
-# creando una griglia di 4 righe e 2 colonne. Il primo plot mostra le immagini in TrueColor. 
+> B032023<-rast("B03-2023.jpg")
+
+> B042023<-rast("B02-2023.jpg")
+
+> B082023<-rast("B08-2023.jpg")
+
+ U23<-c(B022023,B032023,B042023,B082023)
+
+# imposto una visualizzazione delle immagini utilizzando la funzione par() di ImageRy, 
+# creando una griglia di 1 righe e 2 colonne. Il primo plot mostra le immagini in TrueColor. 
 # Il secondo plot viene impostato con la banda del NIR in prima posizione così da evidenziare al meglio la vegetazione e il lago.
 
-par(mfrow=c(4,2))
-im.plotRGB(l17, 1,2,3)
-im.plotRGB(d17, 1,2,3)
-im.plotRGB(l18, 1,2,3)
-im.plotRGB(d18, 1,2,3)
-im.plotRGB(l19, 1,2,3)
-im.plotRGB(d19, 1,2,3)
-im.plotRGB(l20, 1,2,3)
-im.plotRGB(d20, 1,2,3)
+
+> par(mfrow=c(1,2))
+> im.plotRGB(U17, 1,2,3)
+> im.plotRGB(U23, 1,2,3)
 
 dev.off()
 
-par(mfrow=c(4,2))
-im.plotRGB(l17, 4,3,2)
-im.plotRGB(d17, 4,3,2)
-im.plotRGB(l18, 4,3,2)
-im.plotRGB(d18, 4,3,2)
-im.plotRGB(l19, 4,3,2)
-im.plotRGB(d19, 4,3,2)
-im.plotRGB(l20, 4,3,2)
-im.plotRGB(d20, 4,3,2)
+par(mfrow=c(1,2))
+> im.plotRGB(U17, 1,4,2)
+> im.plotRGB(U23, 1,4,2)
 
 dev.off()
 
