@@ -21,6 +21,7 @@ setwd("/Users/Rubolide/Desktop/OasiManzolino")
 # Queste vengono poi incluse in uno stack per creare una immagine che contenga tutte le bande per ogni anno. 
 
             #2017
+
 >B022017<-rast("B04-2017.jpg")
 
 > B032017<-rast("B03-2017.jpg")
@@ -68,66 +69,28 @@ dev.off()
 # si sfruttano queste due bande per poter mettere in risalto l'acqua. 
 
 # 2017
-# estate
-dif1_e = l17[[2]] - l17[[4]] # differenza tra GREEN e NIR
-sum1_e = l17[[2]] + l17[[4]] # somma tra GREEN e NIR
-ndwi1_e = dif1_e / sum1_e
+DifU17 = U17[[2]] - U17[[4]] # differenza tra GREEN e NIR
+> SumU17 = U17[[2]] + U17[[4]] # somma tra GREEN e NIR
+> ndwiU17 = DifU17 / SumU17
 
-# inverno
-dif1_i = d17[[2]] - d17[[4]] # differenza tra GREEN e NIR
-sum1_i = d17[[2]] + d17[[4]] # somma tra GREEN e NIR
-ndwi1_i = dif1_i / sum1_i
 
-# 2018
-# estate
-dif2_e = l18[[2]] - l18[[4]] # differenza tra GREEN e NIR
-sum2_e = l18[[2]] + l18[[4]] # somma tra GREEN e NIR
-ndwi2_e = dif2_e / sum2_e
 
-#inverno
-dif2_i = d18[[2]] - d18[[4]] # differenza tra GREEN e NIR
-sum2_i = d18[[2]] + d18[[4]] # somma tra GREEN e NIR
-ndwi2_i = dif2_i / sum2_i
+#2023
 
-# 2019
-# estate
-dif3_e = l19[[2]] - l19[[4]] # differenza tra GREEN e NIR
-sum3_e = l19[[2]] + l19[[4]] # somma tra GREEN e NIR
-ndwi3_e = dif3_e / sum3_e
-
-# inverno
-dif3_i = d19[[2]] - d19[[4]] # differenza tra GREEN e NIR
-sum3_i = d19[[2]] + d19[[4]] # somma tra GREEN e NIR
-ndwi3_i = dif3_i / sum3_i
-
-# 2020
-# estate
-dif4_e = l20[[2]] - l20[[4]] # differenza tra GREEN e NIR
-sum4_e = l20[[2]] + l20[[4]] # somma tra GREEN e NIR
-ndwi4_e = dif4_e / sum4_e
-
-# inverno
-dif4_i = d20[[2]] - d20[[4]] # differenza tra GREEN e NIR
-sum4_i = d20[[2]] + d20[[4]] # somma tra GREEN e NIR
-ndwi4_i = dif4_i / sum4_i
+difU23 = U23[[2]] - U23[[4]] # differenza tra GREEN e NIR
+sumU23 = U23[[2]] + U23[[4]] # somma tra GREEN e NIR
+ndwiU23 = difU23/ sumU23
 
 
 # Visualizzazione delle immagini elaborate attraverso l'indice NDWI, 
-# suddividendoli per stagione estiva e invernale.
+# suddividendoli per i due anni di riferimento
 # La colorazione scelta è viridis perché la porzione di acqua verrà evidenziata in giallo, 
 # il resto del territorio apparirà in una scala di blu. 
-# Sfrutto sempre la stessa impostazione data da un par() con 4 righe e 2 colonne così da avere 
-# a sinistra le immagini relative al lago in estate e a destra le immagini relative al lago in inverno
-
-par(mfrow=c(4,2))
-plot(ndwi1_e, col=viridis (100)) # 2017 estate
-plot(ndwi1_i, col=viridis (100)) # 2017 inverno
-plot(ndwi2_e, col=viridis (100)) # 2018 estate
-plot(ndwi2_i, col=viridis (100)) # 2018 inverno
-plot(ndwi3_e, col=viridis (100)) # 2019 estate
-plot(ndwi3_i, col=viridis (100)) # 2019 inverno
-plot(ndwi4_e, col=viridis (100)) # 2020 estate
-plot(ndwi4_i, col=viridis (100)) # 2020 inverno
+# Sfrutto sempre la stessa impostazione data da un par() con 1 righe e 2 colonne così da avere 
+# a sinistra le immagini relative al 2017 e a destra al 2023
+par(mfrow=c(1,2))
+plot(ndwiU17, col=viridis (100)) # 2017 
+plot(ndwiU23, col=viridis (100)) # 2023
 
 dev.off()
 
