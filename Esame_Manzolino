@@ -17,7 +17,7 @@ setwd("/Users/Rubolide/Desktop/OasiManzolino")
 #  Le immagini sono state catturate con Sentinel-2
 #  Sono state scaricate le immagini relative alle bande del blu, verde, rosso e NIR
 
-# Carico le immagini del 2017 e del 2023 Ogni banda viene assegnata ad un oggetto. 
+# Carico le immagini dal 2017 al 2024 Ogni banda viene assegnata ad un oggetto. 
 # Queste vengono poi incluse in uno stack per creare una immagine che contenga tutte le bande per ogni anno. 
 
             #2017
@@ -331,17 +331,17 @@ i24c <- im.classify(ndwiU24, num_clusters=3)
 # creazione dei campi che verranno utilizzati per il dataframe 
 # raccolgo le percentuali di copertura delle varie classi dividendole per anno
 
-season <- c("summer", "winter")
+Anno <- c("2017","2018","2019","2020","2021","2022","2023","2024")
 
 
-soil <- c(33.06, 68.72, 37.36, 84.02, 35.73, 60.29, 37.75, 81.31) # percentuali di suolo nudo
-veg <- c(64.69, 23.82, 59.67, 13.50, 61.81, 27.47, 60.36, 15.59) # percentuali di vegetazione
-water <- c(2.25, 7.46, 2.96, 2.49, 2.46, 12.23, 1.89, 3.09) # percentuali della dimensione del lago
+soil <- c( 52.580053,64.676829,42.42707,59.979688,47.40778,51.818871, 58.460798,49.857209) # percentuali di suolo nudo
+veg <- c(38.436993,26.813452,42.42707,31.470599, 42.47723, 41.442443,32.295866,43.474236) # percentuali di vegetazione
+water <- c(8.982954,8.509719,8.27440, 8.549713,10.11500,6.738687, 9.243336,6.668555) # percentuali della dimensione del lago
 # tali percentuali sono espresse in relazione alla superficie totale dell'area di studio
 
 # creazione del dataframe
 
-tab <- data.frame(season, soil, veg, water)
+tab <- data.frame(Anno, soil, veg, water)
 tab
 
 # Visualizzo il dataframe in una versione tabellare
