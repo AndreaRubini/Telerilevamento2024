@@ -329,9 +329,11 @@ i24c <- im.classify(ndwiU24, num_clusters=3)
 
 
 # creazione dei campi che verranno utilizzati per il dataframe 
-# raccolgo le percentuali di copertura delle varie classi dividendole per stagione
+# raccolgo le percentuali di copertura delle varie classi dividendole per anno
 
 season <- c("summer", "winter")
+
+
 soil <- c(33.06, 68.72, 37.36, 84.02, 35.73, 60.29, 37.75, 81.31) # percentuali di suolo nudo
 veg <- c(64.69, 23.82, 59.67, 13.50, 61.81, 27.47, 60.36, 15.59) # percentuali di vegetazione
 water <- c(2.25, 7.46, 2.96, 2.49, 2.46, 12.23, 1.89, 3.09) # percentuali della dimensione del lago
