@@ -7,16 +7,18 @@ library(patchwork) # Per visualizzare i boxplot insieme
 setwd("/Users/Rubolide/Desktop/OasiManzolino")
 
 # Innanzitutto setto Rstudio nella cartella directory dove ho salvato le immagini 
-# Le immagini prese in esame sono dell'Oasi di Manzolino e Tivoli SIC-ZPS  e si rifanno a due anni presi in esame il 2017 e il 2023
+# Le immagini prese in esame sono dell'Oasi di Manzolino e Tivoli SIC-ZPS  e si rifanno al mese di luglio dal 2017 al 2024 
 # Dal'momento che le specie che popolano il sito sono molto sensibili ai cambiamenti di volume e profondità delle zone umide 
-# questo studio vuole vedere alla massima distanza temporale  possibile per Sentinel se vi sono state queste differenze.
-
+# Questo studio vuole vedere alla massima distanza temporale  possibile per Sentinel se vi sono state queste differenze.
+# Dal momento che la gestione dei livelli idrici è da parte dell'uomo questo studio vuole vedere se vi sono state differenze di gestione.
 
 
 # Le immagini sono state scaricate grazie al Copernicus Browser. 
-#  Le immagini sono state catturate con Sentinel-2
-#  Sono state scaricate le immagini relative alle bande del blu, verde, rosso e NIR
-
+# Le immagini sono state catturate con Sentinel-2.
+# Le immagini sono in tiff a 16 bit e risoluzione spaziale massima di X 2m/px, Y 2m/px.
+# Sono state scaricate le immagini relative alle bande del blu, verde, rosso e NIR
+# Immagini di una porzione di territorio pari a 5.52km2
+# Tutte le immagini sono state prese attorno al 20 di luglio di tutti e 8 gli anni.
 # Carico le immagini dal 2017 al 2024 Ogni banda viene assegnata ad un oggetto. 
 # Queste vengono poi incluse in uno stack per creare una immagine che contenga tutte le bande per ogni anno. 
 
@@ -123,7 +125,7 @@ B082024<-rast("B08-2024.tiff")
 
 # imposto una visualizzazione delle immagini utilizzando la funzione par() di ImageRy, 
 # creando una griglia di 4righe e 2 colonne. Il primo plot mostra le immagini in TrueColor. 
-# Il secondo plot viene impostato con la banda del NIR in prima posizione così da evidenziare al meglio la vegetazione e il lago.
+# Il secondo plot viene impostato con la banda del NIR in prima posizione così da evidenziare al meglio le zone umide
 
 
 par(mfrow=c(4,2))
@@ -210,8 +212,8 @@ ndwiU24 = difU24/ sumU24
 # suddividendoli per i due anni di riferimento
 # La colorazione scelta è viridis perché la porzione di acqua verrà evidenziata in giallo, 
 # il resto del territorio apparirà in una scala di blu. 
-# Sfrutto sempre la stessa impostazione data da un par() con 1 righe e 2 colonne così da avere 
-# a sinistra le immagini relative al 2017 e a destra al 2023
+# Sfrutto sempre la stessa impostazione data da un par() con 4 righe e 2 colonne così da avere 
+# in successione tutte le immagini dal 2017 al 2024
 
 par(mfrow=c(4,2))
 plot(ndwiU17, col=viridis (100)) # 2017 
@@ -326,8 +328,6 @@ perc24
 
 i24c <- im.classify(ndwiU24, num_clusters=3)
 
-
-
 # creazione dei campi che verranno utilizzati per il dataframe 
 # raccolgo le percentuali di copertura delle varie classi dividendole per anno
 
@@ -336,8 +336,11 @@ Anno <- c("2017","2018","2019","2020","2021","2022","2023","2024")
 
 soil <- c( 52.580053,64.676829,42.42707,59.979688,47.40778,51.818871, 58.460798,49.857209) # percentuali di suolo nudo
 veg <- c(38.436993,26.813452,42.42707,31.470599, 42.47723, 41.442443,32.295866,43.474236) # percentuali di vegetazione
-water <- c(8.982954,8.509719,8.27440, 8.549713,10.11500,6.738687, 9.243336,6.668555) # percentuali della dimensione del lago
-# tali percentuali sono espresse in relazione alla superficie totale dell'area di studio
+water <- c(8.982954,8.509719,8.27440, 8.549713,10.11500,6.738687, 9.243336,6.668555) # percentuali della variazione di acqua 
+
+# tali percentuali sono espresse in relazione alla superficie totale dell'area di studio pari a 5.54km2
+#essendo un area fortemente antropica le variazioni di terreno nudo e vegetazione sono quasi del tutto dovute alle varie epoche di raccolta
+#delle coltivazioni, pertanto non le prenderemo in studio. 
 
 # creazione del dataframe
 
@@ -348,37 +351,28 @@ tab
 
 View(tab) 
 
-# creazione dei boxplot 
+# creazione del grafico a barre
 
-psoil <- ggplot(tab, aes(x=season, y=soil, color=season)) + 
-geom_boxplot(outlier.colour="red", outlier.shape=8, outlier.size=4)+ 
-ylim(c(0,100)) + 
-xlab("Stagione") +
-ylab("Suolo (%)") +
-ggtitle("Suolo 2017-2020")
+anno <- c(2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024)
+water <- c(8.982954, 8.509719, 8.274400, 8.549713, 10.115000, 6.738687, 9.243336, 6.668555)
 
-pveg <- ggplot(tab, aes(x=season, y=veg, color=season)) +
-geom_boxplot(outlier.colour="red", outlier.shape=8, outlier.size=4) +
-ylim(c(0,100)) + 
-xlab("Stagione") +
-ylab("Vegetazione (%)") +
-ggtitle("Vegetazione 2017-2020")
+# Calcolo delle variazioni percentuali anno su anno
 
-pwater <- ggplot(tab, aes(x=season, y=water, color=season)) +
-geom_boxplot(outlier.colour="red", outlier.shape=8, outlier.size=4) +
-ylim(c(0,100)) + 
-xlab("Stagione") +
-ylab("Acqua (%)") +
-ggtitle("Dimensione del lago 2017-2020")
 
-# visualizzo i boxplot
-psoil + pveg + pwater
+variazioni_percentuali <- c(NA, diff(water) / head(water, -1) * 100)
+ 
+# Creazione del grafico a barre
+barplot(variazioni_percentuali,
++         names.arg = anno, 
++         col = "lightgreen", 
++         main = "Variazioni Percentuali del livello idrico per Anno", 
++         xlab = "Anno", 
++         ylab = "Variazione Percentuale (%)", 
++         ylim = c(min(variazioni_percentuali, na.rm = TRUE) - 5, 
++                  max(variazioni_percentuali, na.rm = TRUE) + 5))
+#lasciando aperta la parentesi tonda possiamo andare a capo nel comando id input
 
-# zoom sulla variabilità della quantità d'acqua tra estate ed inverno
-pwater <- ggplot(tab, aes(x=season, y=water, color=season)) +
-geom_boxplot(outlier.colour="red", outlier.shape=8, outlier.size=4) +
-xlab("Stagione") +
-ylab("Acqua (%)") +
-ggtitle("Dimensione del lago 2017-2020")
+# Aggiungere una linea di base zero
 
-pwater
+abline(h = 0, col = "black")
+# Il grafico mostra chiaramente come a partire dal 2019 vi è una grande differenza nella gestione dei livelli idrici, cosa che invece veniva fatta precedentemente
