@@ -1,0 +1,127 @@
+\documentclass{beamer} % classe di documenti per poter creare le presentazioni che in questo linguaggio vengono definite come frame. 
+\usepackage{graphicx} % Package necessario per utilizzare immagini
+\usepackage{listings} % Pacchetto che può essere utilizzato per caricare degli algoritmi direttamente dagli script.
+\usetheme{CambridgeUS}
+\usecolortheme{sidebartab}
+
+\title{Variazioni delle superfici umide nell'oasi di Manzolino  }
+
+\author{Andrea Rubini}
+\date{9 Agosto 2024}
+
+\begin{document}
+
+\maketitle
+
+\AtBeginSection[]
+{
+\begin{frame}
+\frametitle{Indice}    
+    \tableofcontents[currentsection]
+\end{frame}
+}
+
+\section{Oasi Di Manzolino}
+
+        \begin{frame}{Oasi Di Manzolino}
+            \begin{itemize}
+            
+                \item
+                Il sito si estende in pianura tra le province di Modena e Bologna e comprende la cassa di espansione del Canale di S.Giovanni e i bacini di Tivoli. La cassa di espansione ricade in provincia di Modena ed è formata da tre bacini con acque poco profonde, estesi per una superficie complessiva circa 30 ettari e con ricca vegetazione palustre. Nelle adiacenze della cassa, vi sono rimboschimenti con specie autoctone e pioppeti artificiali. I bacini di Tivoli sono divisi in due gruppi (di 15 e 25 ha) dalla strada che da Tivoli va a Castelfranco Emilia. Sono stati creati negli anni ’60 e ’70 principalmente per l’itticoltura e una parte è in stato di abbandono. Nella parte modenese il sito ricade nell'Oasi di protezione della fauna di Manzolino. Nella parte bolognese alcuni bacini sono stati acquisiti dal Comune di S.Giovanni in Persiceto per la realizzazione di interventi di riqualificazione naturalistica.
+             
+              
+
+            \end{itemize}
+        \end{frame}
+
+        \begin{frame}{Obiettivo del progetto}
+                Lo studio si pone come obbiettivo l'analisi delle variazioni dei livelli dell'acqua dal 2017 al 2024 tutte fotografie analizzate si riferiscono al mese di Luglio. Questo studio vuole analizzare se: come riferito nello stauto dell'ente che gestisce l'oasi avvenga una: gestione dei livelli idrici (nel rispetto della gestione idraulica e della tutela della fauna ittica), finalizzata a diversificare la struttura degli specchi d'acqua ed avere zone con diverse profondità.
+                
+        \end{frame}
+
+        \begin{frame}{ la raccolta Dati}
+           Utilizzando il satellite Sentinel-2 L2A sono state raccolte 8 immagini registrate nel mese di luglio per ognuno di questi 8 anni di studio, tutte le immagini sono state raccolte tra il 17 e il 23 del mese, alla risoluzione spaziale massima possibile di 2m/px su asse X e su asse Y. sono state salvate in formato tiff. a 16 bit l'area selezionata è di 5.54Km2. Per ognuna di queste 8 foto sono state salvate le bande 02,03,04,08 e l'immagine in true color.
+           Queste bande corrispondono a R,G,B e il Nir = near infrared. 
+        \end{frame}
+
+\section{Codice e Dati}
+
+        \begin{frame}{Codice}
+           Una volta scaricate le immagini, sono stati creati "pacchetti" di bande colore uniti per ogni anno di studio, e in seguito sostituito al rosso il Nir, cosa che ha reso più immediata la visione delle zone unide, in quanto il vicino infrarosso viene totalmente assorbito dagli specchi d'acqua.
+        \end{frame}
+       
+        
+    \begin{frame}{NDWI}
+           calcolo l'NDWI (Normalized Difference Water Index) seguendo la formula: 
+       NDWI=(B3-B8)/(B3+B8)   McFeeters (1996)
+      N.B.: B3 qui è la banda del verde così come impostata su sentinel. B8 è per il NIR. 
+     si sfruttano queste due bande per poter mettere in risalto l'acqua. 
+       
+          \end{frame}
+       
+       
+        \begin{frame}{NDWI}
+\begin{figure}
+            \centering
+            \includegraphics[width=0.5\linewidth]{613b3336-11cc-4365-924a-2a9343664486.png}
+            \caption{Plot di visualizzazione NDWI per l'anno 2017}
+            \label{fig:enter-label}
+        \end{figure}
+                \end{frame}
+ 
+ \begin{frame}{Classificazioni in base all'NDWI} 
+          Visualizzazione delle immagini elaborate attraverso l'indice NDWI, 
+suddividendoli per gli 8 anni di riferimento
+La colorazione scelta è viridis cossichè la porzione di acqua verrà evidenziata in giallo, 
+il resto del territorio apparirà in una scala di blu. 
+
+        
+
+       \end{frame}
+       \begin{frame}{Classificazione in base all'NDWI}
+           \begin{figure}
+               \centering
+               \includegraphics[width=0.5\linewidth]{4ffec1e1-43d1-4839-840e-ae4195a58977.png}
+               \caption{ esempio di classificazione per l'anno 2017,Colorazione: Viridis}
+               \label{fig:enter-label}
+           \end{figure}
+       \end{frame}
+       \begin{frame}{Calcolo classi e creazione di un Dataframe}
+           suddividendo in 3 cluster i risulati ottenuti con il calcolo dell'NDWI per ogni anno preso in analisi e calcolando la percentuale di copertura per ogni cluster si è potuto creare un Database con 3 differenti percentuali: Vegetazione( veg),Terreno(soil),Acqua(water)
+       \end{frame}
+       \begin{frame}{Classificazione in base all'NDWI}
+           \begin{figure}
+               \centering
+               \includegraphics[width=0.5\linewidth]{95dabb72-5ad3-4720-90a2-96edf7b2f055.png}
+               \caption{Esempio della visualizzazione della superfice utilizzando i 3 cluster scelti: Soil,Water,Veg}
+               \label{fig:enter-label}
+           \end{figure}
+       \end{frame}
+\section{Risultati}
+        \begin{frame}{Variazioni percentuali del livello idrico per l'Anno }
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.5\linewidth]{3fdfb71b-c735-4b8f-ab92-035eba24fd04.png}
+                \caption{Variazione percentuale di "water" in funzione dell'anno precedente}
+                \label{fig:enter-label}
+            \end{figure}
+        \end{frame}
+
+
+\section{Conclusioni}
+
+        \begin{frame}{Conclusioni}
+        Da quanto si può osservare del grafico, sapendo che la gestione del livello idrico è antropica si può dedurre che l'aumento sostanziale delle variazioni del livello di acqua dal 2021 in poi derivi principalmente da una scarsa gestione  delle acque da parte del consorzio della bonifica burana negli ultimi 3 anni.
+        \end{frame}
+\begin{frame}{Conclusioni}
+    Utilizzando questo studio come base si potrebbe ricercare uno storico dei campionameni di specie nelle varie vasche a differenti livelli di profondità e studiare l'impatto che questi cambiamenti nei livelli idrici hanno sulle specie che abitano l'Oasi di Manzolino.
+\end{frame}
+\begin{frame}{Conclusioni}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{DSC_8319-Migliorato-NR copia.jpg}
+        \caption{Platalea Leucorodia all'Oasi di Manzolino}
+        \label{fig:enter-label}
+    \end{figure}
+\end{frame}
+\end{document}
