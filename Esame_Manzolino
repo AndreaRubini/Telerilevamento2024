@@ -209,7 +209,7 @@ ndwiU24 = difU24/ sumU24
 
 
 # Visualizzazione delle immagini elaborate attraverso l'indice NDWI, 
-# suddividendoli per i due anni di riferimento
+# suddividendoli per gli 8 anni di riferimento
 # La colorazione scelta è viridis perché la porzione di acqua verrà evidenziata in giallo, 
 # il resto del territorio apparirà in una scala di blu. 
 # Sfrutto sempre la stessa impostazione data da un par() con 4 righe e 2 colonne così da avere 
@@ -364,7 +364,7 @@ variazioni_percentuali <- c(NA, diff(water) / head(water, -1) * 100)
 # Creazione del grafico a barre
 barplot(variazioni_percentuali,
 +         names.arg = anno, 
-+         col = "lightgreen", 
++         col = ""skyblue"", 
 +         main = "Variazioni Percentuali del livello idrico per Anno", 
 +         xlab = "Anno", 
 +         ylab = "Variazione Percentuale (%)", 
