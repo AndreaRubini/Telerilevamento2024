@@ -3,7 +3,7 @@ library(imageRy) # Per im.plotRGB() e im.classify()
 library(viridis) # Per utilizzare colorRampPalette adatte a chi soffre di daltonismo
 library(ggplot2) # Per la creazione dei boxplot
 library(patchwork) # Per visualizzare i boxplot insieme
-
+#settiamo la cartella dove inserire i file necessari al nostro studio
 setwd("/Users/Rubolide/Desktop/OasiManzolino")
 
 # Innanzitutto setto Rstudio nella cartella directory dove ho salvato le immagini 
