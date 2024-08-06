@@ -1,12 +1,14 @@
+#Innanzitutto andiamo a richiamare gli add-on necessari al nostro progetto
 library(terra) # Per la funzione rast()
 library(imageRy) # Per im.plotRGB() e im.classify()
 library(viridis) # Per utilizzare colorRampPalette adatte a chi soffre di daltonismo
 library(ggplot2) # Per la creazione dei boxplot
 library(patchwork) # Per visualizzare i boxplot insieme
-#settiamo la cartella dove inserire i file necessari al nostro studio
-setwd("/Users/Rubolide/Desktop/OasiManzolino")
 
 # Innanzitutto setto Rstudio nella cartella directory dove ho salvato le immagini 
+setwd("/Users/Rubolide/Desktop/OasiManzolino")
+
+
 # Le immagini prese in esame sono dell'Oasi di Manzolino e Tivoli SIC-ZPS  e si rifanno al mese di luglio dal 2017 al 2024 
 # Dal'momento che le specie che popolano il sito sono molto sensibili ai cambiamenti di volume e profondità delle zone umide 
 # Questo studio vuole vedere alla massima distanza temporale  possibile per Sentinel se vi sono state queste differenze.
