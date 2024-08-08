@@ -128,7 +128,7 @@ B082024<-rast("B08-2024.tiff")
 # imposto una visualizzazione delle immagini utilizzando la funzione par() di ImageRy, 
 # creando una griglia di 4righe e 2 colonne. Il primo plot mostra le immagini in TrueColor. 
 # Il secondo plot viene impostato con la banda del NIR in prima posizione così da evidenziare al meglio le zone umide
-
+# Anche se non necessario da specificare a ogni codice la sequenza di bande è la seguente r=1, g=2, b=3
 
 par(mfrow=c(4,2))
 im.plotRGB(U17, 1,2,3)
