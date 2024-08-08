@@ -1,12 +1,10 @@
-#Innanzitutto andiamo a richiamare gli add-on necessari al nostro progetto
+# Innanzitutto setto Rstudio nella cartella directory dove ho salvato le immagini 
+setwd("/Users/Rubolide/Desktop/OasiManzolino")
+
+#Dopodichè andiamo a richiamare gli add-on necessari al nostro progetto
 library(terra) # Per la funzione rast()
 library(imageRy) # Per im.plotRGB() e im.classify()
 library(viridis) # Per utilizzare colorRampPalette adatte a chi soffre di daltonismo
-library(ggplot2) # Per la creazione dei boxplot
-library(patchwork) # Per visualizzare i boxplot insieme
-
-# Innanzitutto setto Rstudio nella cartella directory dove ho salvato le immagini 
-setwd("/Users/Rubolide/Desktop/OasiManzolino")
 
 
 # Le immagini prese in esame sono dell'Oasi di Manzolino e Tivoli SIC-ZPS  e si rifanno al mese di luglio dal 2017 al 2024 
@@ -17,7 +15,7 @@ setwd("/Users/Rubolide/Desktop/OasiManzolino")
 
 # Le immagini sono state scaricate grazie al Copernicus Browser. 
 # Le immagini sono state catturate con Sentinel-2.
-# Le immagini sono in tiff a 16 bit e risoluzione spaziale massima di X 2m/px, Y 2m/px.
+# Le immagini sono in tiff a 16 bit e risoluzione spaziale massima di 4mq2/px.
 # Sono state scaricate le immagini relative alle bande del blu, verde, rosso e NIR
 # Immagini di una porzione di territorio pari a 5.52km2
 # Tutte le immagini sono state prese attorno al 20 di luglio di tutti e 8 gli anni.
@@ -126,8 +124,8 @@ B082024<-rast("B08-2024.tiff")
 
 
 # imposto una visualizzazione delle immagini utilizzando la funzione par() di ImageRy, 
-# creando una griglia di 4righe e 2 colonne. Il primo plot mostra le immagini in TrueColor. 
-# Il secondo plot viene impostato con la banda del NIR in prima posizione così da evidenziare al meglio le zone umide
+# creando una griglia di 4 righe e 2 colonne. Il primo plot mostra le immagini in TrueColor. 
+# Il secondo plot viene impostato con la banda del NIR al posto del verde  così da evidenziare al meglio le zone umide
 # Anche se non necessario da specificare a ogni codice la sequenza di bande è la seguente r=1, g=2, b=3
 
 par(mfrow=c(4,2))
