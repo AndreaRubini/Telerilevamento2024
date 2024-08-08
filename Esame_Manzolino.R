@@ -210,7 +210,7 @@ ndwiU24 = difU24/ sumU24
 
 # Visualizzazione delle immagini elaborate attraverso l'indice NDWI, 
 # suddividendoli per gli 8 anni di riferimento
-# La colorazione scelta è viridis perché la porzione di acqua verrà evidenziata in giallo, 
+# La colorazione scelta è viridis così che la porzione di acqua verrà evidenziata in giallo, 
 # il resto del territorio apparirà in una scala di blu. 
 # Sfrutto sempre la stessa impostazione data da un par() con 4 righe e 2 colonne così da avere 
 # in successione tutte le immagini dal 2017 al 2024
@@ -351,13 +351,12 @@ tab
 
 View(tab) 
 
-# creazione del grafico a barre
+# Creazione dei due vettori utili al grafico a barre
 
 anno <- c(2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024)
 water <- c(8.982954, 8.509719, 8.274400, 8.549713, 10.115000, 6.738687, 9.243336, 6.668555)
 
 # Calcolo delle variazioni percentuali anno su anno
-
 
 variazioni_percentuali <- c(NA, diff(water) / head(water, -1) * 100)
  
