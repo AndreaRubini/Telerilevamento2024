@@ -370,7 +370,7 @@ barplot(variazioni_percentuali,
 +         ylab = "Variazione Percentuale (%)", 
 +         ylim = c(min(variazioni_percentuali, na.rm = TRUE) - 5, 
 +                  max(variazioni_percentuali, na.rm = TRUE) + 5))
-#lasciando aperta la parentesi tonda possiamo andare a capo nel comando id input
+#lasciando aperta la parentesi tonda possiamo andare a capo nel comando di input
 
 # Aggiungere una linea di base zero
 
