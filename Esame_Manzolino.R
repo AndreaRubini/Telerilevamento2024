@@ -154,8 +154,8 @@ im.plotRGB(U24, 1,4,2)
 dev.off()
 
 # calcolo l'NDWI (Normalized Difference Water Index) seguendo la formula: 
-# NDWI=(B3-B8)/(B3+B8)   McFeeters (1996)
-# N.B.: B3 qui è la banda del verde così come impostata su sentinel. B8 è per il NIR. 
+# NDWI=(green-nir)/(green+nir)   McFeeters (1996)
+# N.B.: B2 qui è la banda del verde così come impostata su sentinel. B8 è per il NIR. 
 # si sfruttano queste due bande per poter mettere in risalto l'acqua. 
 
 # 2017
