@@ -5,7 +5,7 @@ setwd("/Users/Rubolide/Desktop/OasiManzolino")
 library(terra) # Per la funzione rast()
 library(imageRy) # Per im.plotRGB() e im.classify()
 library(viridis) # Per utilizzare colorRampPalette adatte a chi soffre di daltonismo
-
+library(ggplot2) # Per la creazione del barplot
 
 # Le immagini prese in esame sono dell'Oasi di Manzolino e Tivoli SIC-ZPS  e si rifanno al mese di luglio dal 2017 al 2024 
 # Dal'momento che le specie che popolano il sito sono molto sensibili ai cambiamenti di volume e profondità delle zone umide 
